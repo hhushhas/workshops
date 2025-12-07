@@ -1,30 +1,57 @@
+/* Import JetBrains Mono font */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+
 :root {
-  /* Dark theme (default) */
-  --bg-primary: #0a0a0f;
-  --bg-secondary: #12121a;
-  --bg-tertiary: #1a1a25;
-  --text-primary: #f0f0f5;
-  --text-secondary: #a0a0b0;
-  --text-muted: #606070;
-  --accent: #6366f1;
-  --accent-glow: rgba(99, 102, 241, 0.3);
-  --border: rgba(255, 255, 255, 0.08);
+  /* Dark theme (default) - Sleek, Minimal, Warm */
+  --bg-primary: #121113;
+  --bg-secondary: #1a191d;
+  --bg-tertiary: #222222;
+
+  --text-primary: #c1c1c1;
+  --text-secondary: #8a8a9a;
+  --text-muted: #555560;
+
+  --accent: #e78a53;
+  /* Warm Orange-Brown */
+  --accent-glow: rgba(231, 138, 83, 0.15);
+
+  --secondary-color: #5f8787;
+  /* Muted Teal */
+
+  --border: #333333;
+  --border-subtle: #222222;
+
+  --code-bg: #1a191d;
+  --success: #5f8787;
+  /* Using teal as success-ish vibe or distinct color */
+  --warning: #e78a53;
+  --danger: #cf5555;
+
+  --font-main: 'JetBrains Mono', 'Geist Mono', monospace;
   --font-scale: 1;
-  --code-bg: #1e1e2e;
-  --success: #22c55e;
-  --warning: #f59e0b;
-  --danger: #ef4444;
 }
 
 [data-theme="light"] {
-  --bg-primary: #fafafa;
-  --bg-secondary: #f0f0f5;
-  --bg-tertiary: #e5e5ed;
-  --text-primary: #1a1a2e;
-  --text-secondary: #4a4a5a;
-  --text-muted: #8a8a9a;
-  --border: rgba(0, 0, 0, 0.1);
-  --code-bg: #f4f4f8;
+  /* Light theme - Clean, High Contrast */
+  --bg-primary: #fcfcfc;
+  --bg-secondary: #f4f4f5;
+  --bg-tertiary: #ebebeb;
+
+  --text-primary: #333333;
+  --text-secondary: #555566;
+  --text-muted: #9999aa;
+
+  --accent: #d97036;
+  /* Slightly darker/bolder orange for light mode */
+  --accent-glow: rgba(217, 112, 54, 0.1);
+
+  --secondary-color: #4a6e6e;
+
+  --border: #e6e6e6;
+  --border-subtle: #f0f0f0;
+
+  --code-bg: #f4f4f5;
+  --danger: #d94040;
 }
 
 * {
@@ -33,14 +60,16 @@
   box-sizing: border-box;
 }
 
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
   width: 100%;
   overflow: hidden;
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--font-main);
   background: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
@@ -48,32 +77,31 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Import Inter font */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
-
 /* Scrollbar styling */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-secondary);
+  background: var(--bg-primary);
+  border-left: 1px solid var(--border-subtle);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--text-muted);
-  border-radius: 4px;
+  background: var(--border);
+  border-radius: 5px;
+  border: 2px solid var(--bg-primary);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--text-secondary);
+  background: var(--accent);
 }
 
 /* Selection */
 ::selection {
   background: var(--accent);
-  color: white;
+  color: #121113;
 }
 
 /* Focus styles */
@@ -87,7 +115,6 @@ body {
   transition: background-color 0.3s ease, color 0.2s ease, border-color 0.3s ease;
 }
 
-/* Button reset */
 button {
   font-family: inherit;
   border: none;
