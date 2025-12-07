@@ -1,0 +1,192 @@
+.presenter-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr auto;
+    height: 100vh;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--bg-primary);
+}
+
+.presenter-current {
+    grid-row: 1;
+    grid-column: 1;
+    background: var(--bg-secondary);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.presenter-current-header {
+    padding: 1rem 1.5rem;
+    background: var(--bg-tertiary);
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+    color: var(--text-secondary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.presenter-current-content {
+    flex: 1;
+    overflow: auto;
+    padding: 2rem;
+}
+
+.presenter-sidebar {
+    grid-row: 1;
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.presenter-next {
+    flex: 1;
+    background: var(--bg-secondary);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.presenter-next-header {
+    padding: 0.75rem 1rem;
+    background: var(--bg-tertiary);
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+.presenter-next-content {
+    flex: 1;
+    overflow: auto;
+    padding: 1rem;
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+.presenter-notes {
+    flex: 1;
+    background: var(--bg-secondary);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.presenter-notes-header {
+    padding: 0.75rem 1rem;
+    background: var(--bg-tertiary);
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.presenter-notes-content {
+    flex: 1;
+    overflow: auto;
+    padding: 1rem;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+}
+
+.presenter-notes-content.empty {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.presenter-controls {
+    grid-row: 2;
+    grid-column: 1 / -1;
+    background: var(--bg-secondary);
+    border-radius: 16px;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.presenter-timer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.presenter-timer-display {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--accent);
+    min-width: 140px;
+    text-align: center;
+}
+
+.presenter-timer-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.presenter-timer-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--bg-tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    transition: all 0.2s;
+}
+
+.presenter-timer-btn:hover {
+    background: var(--accent);
+    color: white;
+}
+
+.presenter-timer-btn.active {
+    background: var(--success);
+    color: white;
+}
+
+.presenter-nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.presenter-slide-counter {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.presenter-shortcuts {
+    display: flex;
+    gap: 1rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.presenter-shortcut {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.presenter-shortcut kbd {
+    background: var(--bg-tertiary);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+}
