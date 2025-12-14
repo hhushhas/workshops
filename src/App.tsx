@@ -7,6 +7,9 @@ import { SlideNavigation } from './components/SlideNavigation';
 import { PresenterMode } from './components/PresenterMode';
 import { ThemeToggle } from './components/ThemeToggle';
 import { ShortcutPalette } from './components/ShortcutPalette';
+import { ProjectHub } from './components/ProjectHub';
+import { Project } from './types';
+import { Home } from 'lucide-react';
 import './styles/index.css';
 import './styles/slides.css';
 
@@ -29,8 +32,13 @@ function formatCurrentTime(date: Date): string {
   });
 }
 
-function SlideApp() {
-  const { slides, loading, error, reload } = useSlideParser('/slides/example.md');
+interface SlideAppProps {
+  path: string;
+  onBack: () => void;
+}
+
+function SlideApp({ path, onBack }: SlideAppProps) {
+  const { slides, loading, error, reload } = useSlideParser(path);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [presenterMode, setPresenterMode] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
@@ -121,6 +129,7 @@ function SlideApp() {
     onToggleNotes: toggleNotes,
     onToggleTime: toggleTime,
     onToggleHelp: toggleHelp,
+    onBack: onBack,
   });
 
   // Track elapsed time
@@ -140,15 +149,25 @@ function SlideApp() {
   }, []);
 
   if (loading) {
-    return <div className="slide-loading">Loading slides...</div>;
+    return (
+      <div className="slide-loading">
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
+          <div>Loading workspace...</div>
+          <button onClick={onBack} className="error-back-btn">Return to Project Hub</button>
+        </div>
+      </div>
+    );
   }
 
   if (error) {
     return (
       <div className="slide-error">
-        <h2>Failed to load slides</h2>
+        <h2>Failed to load project</h2>
         <p>{error}</p>
-        <button onClick={reload}>Try Again</button>
+        <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
+          <button onClick={reload}>Try Again</button>
+          <button onClick={onBack} style={{ background: 'var(--bg-secondary)' }}>Back to Hub</button>
+        </div>
       </div>
     );
   }
@@ -156,8 +175,9 @@ function SlideApp() {
   if (slides.length === 0) {
     return (
       <div className="slide-error">
-        <h2>No slides found</h2>
-        <p>Add a Markdown file to public/slides/example.md</p>
+        <h2>No content found</h2>
+        <p>This project seems to be empty.</p>
+        <button onClick={onBack}>Back to Hub</button>
       </div>
     );
   }
@@ -176,6 +196,16 @@ function SlideApp() {
   return (
     <>
       <ThemeToggle visible={showControls} />
+      
+      {/* Home Button */}
+      <button 
+        className={`home-button ${!showControls ? 'hidden' : ''}`}
+        onClick={onBack}
+        title="Back to Projects"
+      >
+        <Home size={20} />
+      </button>
+
       <SlideViewer 
         slide={slides[currentSlide]} 
         slideIndex={currentSlide}
@@ -223,6 +253,37 @@ function SlideApp() {
       {showHelp && <ShortcutPalette onClose={toggleHelp} />}
 
       <style>{`
+        .home-button {
+          position: fixed;
+          top: 1rem;
+          left: 1rem;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background: var(--bg-secondary);
+          border: 1px solid var(--border);
+          color: var(--text-primary);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          z-index: 100;
+          transition: all 0.2s ease;
+          box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .home-button:hover {
+          background: var(--accent);
+          color: white;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        .home-button.hidden {
+          opacity: 0;
+          pointer-events: none;
+        }
+
         .minimal-progress {
           position: fixed;
           bottom: 0;
@@ -291,15 +352,45 @@ function SlideApp() {
           height: 30px;
           background: var(--border);
         }
+
+        .error-back-btn {
+          margin-top: 1rem;
+          padding: 0.5rem 1rem;
+          background: var(--accent);
+          color: white;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+        }
       `}</style>
     </>
   );
 }
 
 function App() {
+  const [view, setView] = useState<'hub' | 'viewer'>('hub');
+  const [currentPath, setCurrentPath] = useState<string | null>(null);
+
+  const handleOpenProject = (project: Project) => {
+    setCurrentPath(project.path);
+    setView('viewer');
+  };
+
+  const handleBackToHub = () => {
+    setView('hub');
+    setCurrentPath(null);
+  };
+
   return (
     <ThemeProvider>
-      <SlideApp />
+      {view === 'hub' ? (
+        <ProjectHub onSelectProject={handleOpenProject} />
+      ) : (
+        <SlideApp 
+          path={currentPath!} 
+          onBack={handleBackToHub} 
+        />
+      )}
     </ThemeProvider>
   );
 }

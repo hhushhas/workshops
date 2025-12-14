@@ -13,6 +13,7 @@ interface UseKeyboardNavProps {
   onToggleHelp?: () => void;
   onToggleZenMode?: () => void;
   onToggleControls?: () => void;
+  onBack?: () => void;
 }
 
 export function useKeyboardNav({ 
@@ -28,10 +29,16 @@ export function useKeyboardNav({
   onToggleHelp,
   onToggleZenMode,
   onToggleControls,
+  onBack,
 }: UseKeyboardNavProps) {
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     // Ignore if user is typing in an input
     if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
+      return;
+    }
+
+    // Ignore if modifier keys are pressed (allows system shortcuts like Cmd+Arrow to work)
+    if (e.metaKey || e.ctrlKey || e.altKey || e.shiftKey) {
       return;
     }
 
@@ -104,6 +111,8 @@ export function useKeyboardNav({
       case 'Escape':
         if (document.fullscreenElement) {
           document.exitFullscreen();
+        } else {
+          onBack?.();
         }
         break;
       default:

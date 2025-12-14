@@ -26,6 +26,7 @@ A practical workshop for developers
 <td width="50%">
 
 ### 🧠 Smart Models
+
 **For: Planning & Complex Work** (Dimagh wale kaam)
 
 <img src="https://www.anthropic.com/_next/static/media/claude-logo.9b44c44d.svg" width="120" alt="Claude" />
@@ -49,6 +50,7 @@ A practical workshop for developers
 <td width="50%">
 
 ### ⚡ Fast Models
+
 **For: Quick Execution** (Jugaad aur speed)
 
 <img src="https://www.anthropic.com/_next/static/media/claude-logo.9b44c44d.svg" width="120" alt="Claude" />
@@ -76,6 +78,16 @@ A practical workshop for developers
 
 ---
 
+## Test Code
+```compare
+// 🔴 Bad Code
+${1:function bad() {}}
+===
+// 🟢 Good Code
+${2:function good() {}}
+```
+---
+
 ## The Context Problem
 
 <table>
@@ -92,14 +104,14 @@ A practical workshop for developers
 
 **AI will guess**  
 **Probably wrong**  
-*(Yaar mujhe kya pata?)*
+_(Yaar mujhe kya pata?)_
 
 </td>
 <td width="33%">
 
 ### ❌ Too Much
 
-```
+```typescript
 [dumps entire
 5000-line
 codebase]
@@ -109,14 +121,14 @@ codebase]
 
 **AI gets lost**  
 **Misses the point**  
-*(Itna parhne ka time kiske paas hai?)*
+_(Itna parhne ka time kiske paas hai?)_
 
 </td>
 <td width="33%">
 
 ### ✅ Just Right
 
-```
+```typescript
 "Fix login bug
 in auth.js
 
@@ -133,7 +145,7 @@ Using JWT with
 
 **AI understands**  
 **Fixes it right**  
-*(Shabash!)*
+_(Shabash!)_
 
 </td>
 </tr>
@@ -146,7 +158,9 @@ Using JWT with
 ## The 5-Step Workflow
 
 ### Step 1: Clarify What You Want (15-20 min)
+
 Write down:
+
 - What problem am I solving?
 - What does success look like?
 - What constraints do I have?
@@ -160,10 +174,11 @@ Write down:
 ### Step 2: Draft a Plan (Smart Model)
 
 **Prompt example:**
+
 ```
 I need to build a user authentication system for our web app.
 
-Before you suggest a solution, ask me 5 clarifying 
+Before you suggest a solution, ask me 5 clarifying
 questions about requirements, constraints, and context.
 ```
 
@@ -178,7 +193,7 @@ Then answer the questions. Repeat 3-4 times.
 ### Step 3: Review & Iterate the Plan
 
 - Read the plan carefully
-- Point out anything wrong or unclear  
+- Point out anything wrong or unclear
 - Ask "what if..." questions
 - Iterate until the plan is solid
 
@@ -207,6 +222,7 @@ Then answer the questions. Repeat 3-4 times.
 ### Step 5 (Optional): Refine Your Prompt
 
 Before executing, ask a fast model:
+
 ```
 Make this prompt clearer and more actionable:
 
@@ -222,13 +238,15 @@ This helps catch unclear instructions.
 ## Practical Prompting Tips
 
 ### ✅ Be Specific and Positive
+
 ```
 ❌ "Don't use var"
-✅ "Use const for variables that don't change, 
+✅ "Use const for variables that don't change,
     let for variables that do"
 ```
 
 ### ✅ Show Examples
+
 ```
 "Format the response like this:
 {
@@ -238,6 +256,7 @@ This helps catch unclear instructions.
 ```
 
 ### ✅ Set Expectations
+
 ```
 "Explain this code to a junior developer.
 Use simple language and include comments."
@@ -255,7 +274,7 @@ Use simple language and include comments."
 🚩 It's missing obvious issues  
 🚩 The code quality is dropping  
 🚩 It's taking too long for simple tasks  
-*(Banda dheet ban gaya hai)*
+_(Banda dheet ban gaya hai)_
 
 **Don't fight it - just switch!**
 
@@ -270,13 +289,15 @@ Try: Claude → Gemini → GPT → back to Claude
 ### We'll build a simple API endpoint together
 
 **Task:** Create a POST endpoint that:
+
 - Accepts user registration data
 - Validates email format
-- Checks if email already exists  
+- Checks if email already exists
 - Saves to database
 - Returns proper error messages
 
 **Watch how I:**
+
 1. Ask the AI to ask ME questions first
 2. Iterate on the plan 3 times
 3. Switch to implementation
@@ -289,15 +310,17 @@ Try: Claude → Gemini → GPT → back to Claude
 
 ### Pair up! One driver, one navigator.
 
-**Your task:** 
+**Your task:**
 Create a function that processes customer orders and applies discount rules.
 
 **Requirements:**
+
 - Orders over $100 get 10% off
 - First-time customers get an extra 5% off
 - Discounts stack (but max 20% total)
 
 **Follow the workflow:**
+
 1. Spend 3 min clarifying the problem (write it down)
 2. Use smart model to draft a plan
 3. Iterate on the plan (2-3 rounds)
@@ -333,19 +356,24 @@ Let's share:
 ## Common Mistakes to Avoid
 
 ### ❌ Pasting the same failing prompt 5 times
-→ Switch models or rephrase completely *(Pagalpan hai yeh)*
+
+→ Switch models or rephrase completely _(Pagalpan hai yeh)_
 
 ### ❌ Skipping the planning phase
+
 → You'll rewrite code 3 times instead
 
 ### ❌ Not giving enough context
-→ AI will hallucinate and guess *(Tukkay marega)*
 
-### ❌ Giving too much irrelevant context  
+→ AI will hallucinate and guess _(Tukkay marega)_
+
+### ❌ Giving too much irrelevant context
+
 → AI will get confused about what matters
 
 ### ❌ Trusting AI blindly
-→ ALWAYS review the code. Always. *(Aankhein band karke trust mat karna)*
+
+→ ALWAYS review the code. Always. _(Aankhein band karke trust mat karna)_
 
 <!-- notes: Doosron ki galtiyon se seekho. Biggest mistake? Skipping planning. It feels faster but it's actually suuuuper slow. Second biggest? Pasting the same prompt over and over. Switch models! And please, PLEASE review the code. AI code often compiles fine but breaks in production. -->
 
@@ -354,19 +382,23 @@ Let's share:
 ## Quick Reference Card
 
 ### 📋 Smart Models → Planning & Architecture
+
 Claude Opus, Gemini Pro, GPT-4
 
 ### ⚡ Fast Models → Quick Tasks
+
 Claude Haiku, Gemini Flash, GPT-4o mini
 
 ### 🎯 The Workflow
+
 1. Clarify (15-20 min)
-2. Plan with Q&A (smart model)  
+2. Plan with Q&A (smart model)
 3. Iterate the plan
 4. Execute (new chat, fast model)
 5. Refine prompts when needed
 
 ### 🔄 Switch models when:
+
 Repetitive, wrong, slow, or stuck
 
 <!-- notes: Iska screenshot le lo. This is your cheat sheet. Kal jab phanso toh yahan dekh lena. Am I using the right model? Did I skip the planning step? These four points will solve 80% of your AI problems. -->
@@ -376,6 +408,7 @@ Repetitive, wrong, slow, or stuck
 ## Real-World Example Prompts
 
 ### 🏗️ For Planning (Smart Model):
+
 ```
 I'm designing a caching layer for our API.
 Before suggesting an approach, ask me:
@@ -394,13 +427,14 @@ Then we'll iterate on the design together.
 ## Real-World Example Prompts
 
 ### ⚡ For Implementation (Fast Model):
+
 ```
 Implement this caching layer plan:
 [paste the final plan from smart model]
 
 Requirements:
 - Use Redis for the cache store
-- Handle cache misses gracefully  
+- Handle cache misses gracefully
 - Add proper error handling
 - Include TypeScript types
 - Add comments explaining the logic
@@ -415,6 +449,7 @@ Focus on the UserCache class first.
 ## Real-World Example Prompts
 
 ### 🐛 For Debugging (Smart Model):
+
 ```
 I'm getting intermittent 500 errors in production.
 
@@ -425,7 +460,7 @@ Context:
 - We have 1000 concurrent users peak
 - Currently using default pool settings
 
-What debugging steps should I take, and what 
+What debugging steps should I take, and what
 information do you need from me to diagnose this?
 ```
 
@@ -436,11 +471,13 @@ information do you need from me to diagnose this?
 ## Your Action Plan
 
 ### This Week:
+
 1. ✅ Bookmark your favorite AI models (one smart, one fast)
 2. ✅ Try the 5-step workflow on ONE real task
 3. ✅ Practice asking AI to ask YOU questions first
 
-### This Month:  
+### This Month:
+
 1. ✅ Compare outputs between different models
 2. ✅ Build a prompt template library for common tasks
 3. ✅ Share what works with the team
@@ -452,16 +489,19 @@ information do you need from me to diagnose this?
 ## Resources
 
 ### 🤖 Try These Models:
+
 - **Claude.ai** (Anthropic) - Great at reasoning
-- **Gemini** (Google) - Fast and versatile  
+- **Gemini** (Google) - Fast and versatile
 - **ChatGPT** (OpenAI) - Most popular
 
 ### 📚 Learn More:
+
 - Anthropic Prompt Engineering Guide
 - Google AI Best Practices
 - Our internal #ai-tips Slack channel
 
 ### 💬 Keep Learning:
+
 - Share prompts that work in Slack
 - Weekly AI tips on Fridays
 - Ask me anytime!
@@ -473,8 +513,9 @@ information do you need from me to diagnose this?
 # Questions?
 
 ### Remember:
+
 - AI is a co-worker, not magic
-- Use the right model for the job  
+- Use the right model for the job
 - Plan before you code
 - Switch when stuck
 - Always review the output
